@@ -53,7 +53,7 @@ for j in range(length):
 
 #viet vao file output
 f2 = open("output02.txt", "w")
-f2.write('%s\n' %(topic))
+f2.write('%s\n' % (topic))
 k = 0
 while k < length:
     f2.write('%s, %s %s. %s, %d, %d\n' %(id[k], first_name[k].title(), middle_name[k][0].title(), last_name[k].upper(), age[k], premium[k]))
