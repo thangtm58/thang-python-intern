@@ -24,18 +24,14 @@ with open("input01.txt", "r") as f1:
     line = f1.readline()
     # check line is not empty
     while line:
-        l.append(float (line.strip()))
+        l.append(float(line.strip()))
         print(line.strip())
         line = f1.readline()
     print(l)
 f1.close()
 
 f = open('output01.txt', 'w')
-f.write('Day la so nho nhat: %.2f ' %(min(l)))
+f.write('Day la so nho nhat: %.2f ' % (min(l)))
 print(min(l))
 f.close()
-
-
-
-
 
