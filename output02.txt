@@ -1,0 +1,5 @@
+nricfin first_name middle_name last_name date_of_birth premium claim_count
+S122333aG, An V. NGUYEN, 20, 1000
+S122333bG, Binh T. TRAN, 29, 500
+S122333bG, Trinh D. CAO, 19, 1500
+S122333bG, Thuong B. VU, 39, 500
