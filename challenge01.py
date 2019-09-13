@@ -32,7 +32,8 @@ with open("input01.txt", "r") as f1:
 f1.close()
 
 f = open('output01.txt', 'w')
-f.write('Day la so nho nhat: %.2f ' % (min(l)))
+f.write('Day la so nho nhat: %.2f ' % (min(l)))  #TODO Thang use f-string please
 print(min(l))
 f.close()
 
+#TODO Thang collect challenge01 's related file into challenge01/ folder
