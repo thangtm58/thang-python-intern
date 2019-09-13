@@ -38,9 +38,9 @@ while idx < length:
 i = 0
 #nhap vao gia tri year month day
 while i < length:
-    year.append(int (dob1[i][0]))
-    month.append(int (dob1[i][1]))
-    day.append(int (dob1[i][2]))
+    year.append(int(dob1[i][0]))
+    month.append(int(dob1[i][1]))
+    day.append(int(dob1[i][2]))
     i += 1
 
 #tinh tuoi va tinh premium
