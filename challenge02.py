@@ -13,7 +13,6 @@ age = []
 
 #mo file
 with open("input02.txt", "r") as f1:
-
     topic = f1.readline().rstrip('\n')
     n = f1.readline().rstrip('\n')
     data = f1.readlines()
