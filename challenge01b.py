@@ -1,8 +1,7 @@
 l = []
-lst = []
 with open("input01b.txt", "r") as f1:
     # Read next line
-    n = int (f1.readline())
+    n = int(f1.readline())
     line = f1.readline()
     # check line is not empty
     while line:
@@ -12,11 +11,12 @@ with open("input01b.txt", "r") as f1:
     print(l)
 f1.close()
 
-lst = []
+lst = []  #TODO Thang rename :lst to something like is_max
 for i in range(n):
     if l[i] == max(l):
         lst.append(1)
-    else: lst.append(0)
+    else:
+        lst.append(0)
 print(lst)
 
 #ghi vao file output

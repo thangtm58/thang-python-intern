@@ -23,7 +23,7 @@ while idx < length:
     # tách một dòng thành một list
     line_list = data[idx].split()
 
-    id.append(line_list[0])
+    id.append(line_list[0])  #TODO Thang rename to nricfin
     first_name.append(line_list[1])
     middle_name.append(line_list[2])
     last_name.append(line_list[3])
