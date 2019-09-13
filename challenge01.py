@@ -24,7 +24,8 @@ with open("input01.txt", "r") as f1:
     line = f1.readline()
     # check line is not empty
     while line:
-        l.append(float(line.strip()))
+        v = float(line.strip())  # v aka value
+        l.append(v)
         print(line.strip())
         line = f1.readline()
     print(l)
