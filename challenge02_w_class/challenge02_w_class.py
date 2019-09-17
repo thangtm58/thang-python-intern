@@ -30,12 +30,12 @@ while idx < len(data):
     employee[idx].year = int(employee[idx].dob[0:4])
     idx += 1
 
+claim_count_list  = [ c.claim_count for c in employee ]
+
 #Compute Age and Premium of each employee
 for j in range(len(data)):
     employee[j].age = today.year - employee[j].year
-    if employee[j].claim_count == max(employee.claim_count):
-#TODO: Claim_count ở đây không phải là list nên không xài được max(),
-# em có nên khai báo thêm 1 list rồi gán claim_count của tất cả employee vào không anh?
+    if employee[j].claim_count == max(claim_count_list):
         employee[j].premium = int(employee[j].premium) * 3
     elif employee[j].age <= 26:
         employee[j].premium = int(employee[j].premium) * 2
@@ -45,7 +45,7 @@ f2 = open("output02.txt", "w")
 f2.write('%s\n' %(topic))
 k = 0
 while k < len(data):
-    f2.write(f'{employee[k].id}, {employee[k].first_name.title()} {employee[k].middle_name[0]}. {employee[k].last_name}, {employee[k].age}, {employee[k].premium}\n')
+    f2.write(f'{employee[k].id}, {employee[k].first_name.title()} {employee[k].middle_name[0].title()}. {employee[k].last_name.upper()}, {employee[k].age}, {employee[k].premium}\n')
     k += 1
 f2.close()
 
