@@ -1,24 +1,21 @@
---00 Create Database
-CREATE DATABASE ACCOUNT;
 
 --01 Create Table
-Create TABLE Customers(
-	Name varchar(50) primary key,
-	Address varchar(max) not null,
-	DateOfBirth date not null,
-	Age int not null,
-	Phone varchar(10)
+CREATE TABLE Customers(
+	user_id varchar(50) PRIMARY KEY ,
+	name varchar(100) not null,
+	dob date not null,
+	updated_at timestamp
 );
 
 --02 Insert Customer Values
 
 INSERT INTO Customers VALUES
-('Trinh Minh Thang','District 4','1999-08-05','20','0924019849'),
-('Dang Kim Thoa','District 1','1989-07-15','30','0123489242'),
-('Le Thanh Xuan','District 12','2009-12-05','10','0998821311'),
-('Vo Van Vuong','Hoc Mon','1969-01-25','50','0913841231');
+('user01','Ronaldo','19990805','2019-01-12 07:00:01'),
+('user02','Modric','19890715','2019-10-01 00:00:01'),
+('user03','Ramos','20091205','2019-11-01 08:00:01'),
+('user04','Hazard','19690125','2019-11-24 11:20:01');
 
 --03 Indicate Customer Having Lowest Age
 
 SELECT * FROM Customers
-WHERE age = (SELECT max(age) as maxAge FROM customers);
+WHERE dob = (SELECT max(dob) as maxAge FROM customers);
