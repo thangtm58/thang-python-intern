@@ -20,6 +20,12 @@ class Customer(Base):
     dob           = Column(String)
     updated_at    = Column(String)
 
+    def __init__(self, user_id, name, dob, updated_at):
+        self.user_id = user_id
+        self.name = name
+        self.dob = dob
+        self.updated_at = updated_at
+
 #CREATE ENGINE
 engine = create_engine(connection_string)
 
@@ -27,6 +33,22 @@ engine = create_engine(connection_string)
 Session = sessionmaker(bind=engine)
 session = Session()
 
-# Insert data of name column
+#CRUD
+#CREATE
+customer05 = Customer('user05','Vinicius','20011006','2019-06-12 07:53:01')
+session.add(customer05)
+session.commit()
+
+#READ
 for data in session.query(Customer):
-    print([data.user_id])
+    print(f'{data.name} : {data.dob}')
+
+#UPDATE
+customer_data = session.query(Customer).get('user01')
+customer_data.name = 'Post Malone'
+session.commit()
+
+# DELETE
+customer_data = session.query(Customer).get('user02')
+session.delete(customer_data)
+session.commit()
