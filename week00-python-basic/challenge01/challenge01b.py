@@ -11,17 +11,17 @@ with open("input01b.txt", "r") as f1:
     print(l)
 f1.close()
 
-lst = []  #TODO Thang rename :lst to something like is_max
+is_max = []
 for i in range(n):
     if l[i] == max(l):
-        lst.append(1)
+        is_max.append(1)
     else:
-        lst.append(0)
-print(lst)
+        is_max.append(0)
+print(is_max)
 
 #ghi vao file output
 f2 = open('output01b.txt', 'w+')
 for i in range(n):
-    f2.write('%d\n' %(lst[i]))
+    f2.write(f'{is_max[i]}\n')
 f2.close()
 

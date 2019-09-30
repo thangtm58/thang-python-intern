@@ -10,7 +10,7 @@ class Person:
         self.dob = dob
         self.premium = premium
         self.claim_count = claim_count
-#TODO: Em đã khai báo class như a Nam k dùng __init__ nhưng e debug thì bị lỗi dòng 28
+
 employee = []
 
 #Open input file
@@ -42,7 +42,7 @@ for j in range(len(data)):
 
 #Write into output file
 f2 = open("output02.txt", "w")
-f2.write('%s\n' %(topic))
+f2.write(f'{topic}\n')
 k = 0
 while k < len(data):
     f2.write(f'{employee[k].id}, {employee[k].first_name.title()} {employee[k].middle_name[0].title()}. {employee[k].last_name.upper()}, {employee[k].age}, {employee[k].premium}\n')
