@@ -1,4 +1,4 @@
-def max_claim(input, output):
+def find_max_claim(input, output):
     l = []
     with open(input, "r") as f1:
         # Read next line
@@ -26,4 +26,4 @@ def max_claim(input, output):
         f2.write(f'{is_max[i]}\n')
     f2.close()
 
-max_claim(input='input01b.txt', output='output01b.txt')
+find_max_claim(input='input01b.txt', output='output01b.txt')
