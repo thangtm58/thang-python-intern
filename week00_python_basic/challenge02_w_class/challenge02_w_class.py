@@ -13,39 +13,45 @@ class Person:
 
 employee = []
 
-#Open input file
-with open("input02.txt", "r") as f1:
+def insurance_policies(input, output):
+    # Open input file
+    with open(input, "r") as f1:
 
-    topic = f1.readline().rstrip('\n')
-    n = f1.readline().rstrip('\n')
-    data = f1.readlines()
+        topic = f1.readline().rstrip('\n')
+        n = f1.readline().rstrip('\n')
+        data = f1.readlines()
 
-#Assign value for each employee
-idx = 0
-while idx < len(data):
-    #Split line into list
-    nricfin = data[idx].split()
-    employee_all = Person(*nricfin)
-    employee.append(employee_all)
-    employee[idx].year = int(employee[idx].dob[0:4])
-    idx += 1
+    # Assign value for each employee
+    idx = 0
+    while idx < len(data):
+        # Split line into list
+        nricfin = data[idx].split()
+        employee_all = Person(*nricfin)
+        employee.append(employee_all)
+        employee[idx].year = int(employee[idx].dob[0:4])
+        idx += 1
 
-claim_count_list  = [ c.claim_count for c in employee ]
+    claim_count_list = [c.claim_count for c in employee]
 
-#Compute Age and Premium of each employee
-for j in range(len(data)):
-    employee[j].age = today.year - employee[j].year
-    if employee[j].claim_count == max(claim_count_list):
-        employee[j].premium = int(employee[j].premium) * 3
-    elif employee[j].age <= 26:
-        employee[j].premium = int(employee[j].premium) * 2
+    # Compute Age and Premium of each employee
+    for j in range(len(data)):
+        employee[j].age = today.year - employee[j].year
+        if employee[j].claim_count == max(claim_count_list):
+            employee[j].premium = int(employee[j].premium) * 3
+        elif employee[j].age <= 26:
+            employee[j].premium = int(employee[j].premium) * 2
 
-#Write into output file
-f2 = open("output02.txt", "w")
-f2.write(f'{topic}\n')
-k = 0
-while k < len(data):
-    f2.write(f'{employee[k].id}, {employee[k].first_name.title()} {employee[k].middle_name[0].title()}. {employee[k].last_name.upper()}, {employee[k].age}, {employee[k].premium}\n')
-    k += 1
-f2.close()
+    # Write into output file
+    f2 = open(output, "w")
+    f2.write(f'{topic}\n')
+    k = 0
+    while k < len(data):
+        f2.write(
+            f'{employee[k].id}, {employee[k].first_name.title()} {employee[k].middle_name[0].title()}. {employee[k].last_name.upper()}, {employee[k].age}, {employee[k].premium}\n')
+        k += 1
+    f2.close()
+
+insurance_policies(input="input02.txt", output="output02.txt")
+
+
 
