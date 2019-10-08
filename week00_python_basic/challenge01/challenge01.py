@@ -25,7 +25,7 @@ def find_min(input, output):
             data = [float(n.rstrip(', ')) for n in data]
             # Write to file
             f = open(output, 'w')
-            f.write(f'{int(min(data))}') # tc01
+            f.write(f'{int(min(data))}\n') # tc01
             f.close()
         # tc03a
         except:
