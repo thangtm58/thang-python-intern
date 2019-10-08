@@ -1,6 +1,0 @@
-nricfin first_name middle_name last_name date_of_birth premium claim_count
-4
-S122333aG an van nguyen 1999-01-22 500 0
-S122333bG binh thi tran 1990-02-11 500 0
-S122333bG trinh do cao 2000-02-11 500 2
-S122333bG thuong binh vu 1980-02-11 500 1
