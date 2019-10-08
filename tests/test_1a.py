@@ -1,5 +1,6 @@
 import unittest
 import textwrap
+import filecmp
 
 from tests.util import write2file, get_tc_file
 from week00_python_basic.challenge01.challenge01 import find_min
@@ -35,19 +36,31 @@ class Test(unittest.TestCase):
         valid_input = f'{tc_file}.input'
         write2file(
             filename=valid_input,
-            lines=textwrap.dedent('1, 22, 333, 44, 55, 66').strip(),
+            lines=textwrap.dedent('''
+            1 
+            22
+            333
+            44 
+            55
+            66
+            ''').strip(),
         )
         #endregion
 
         #region make expected output
-        actual_output = f'{tc_file}.out'
         expected_output = f'{tc_file}.expected.out'
-        find_min(input=valid_input, output=actual_output)
         write2file(
-            filename = expected_output,
-            lines    = textwrap.dedent('1').strip(),
+            filename=expected_output,
+            lines=textwrap.dedent('1').strip(),
         )
         #endregion
+
+        # run testee code
+        actual_output = f'{tc_file}.out'
+        find_min(valid_input, actual_output)
+
+        # check for expected values
+        assert filecmp.cmp(actual_output, expected_output)
 
     def test_tc02(self):
         """
@@ -59,7 +72,11 @@ class Test(unittest.TestCase):
         valid_input = f'{tc_file}.input'
         write2file(
             filename=valid_input,
-            lines=textwrap.dedent('1, 22, 333').strip(),
+            lines=textwrap.dedent('''
+                1
+                22
+                333            
+            ''').strip(),
         )
         #endregion
 
@@ -78,7 +95,14 @@ class Test(unittest.TestCase):
         valid_input = f'{tc_file}.input'
         write2file(
             filename=valid_input,
-            lines=textwrap.dedent('1, 22, 333, 44, 555, a').strip(),
+            lines=textwrap.dedent('''
+                1
+                22
+                333 
+                44 
+                555
+                a
+            ''').strip(),
         )
         #endregion
 
