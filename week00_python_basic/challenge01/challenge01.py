@@ -27,16 +27,9 @@ def find_min(input, output):
             f = open(output, 'w')
             f.write(f'{int(min(data))}') # tc01
             f.close()
+        # tc03a
         except:
             raise Exception('Invalid input: The item in the list must be a number')
 
-
-
 if __name__ == '__main__':
     find_min(input='input01.txt', output='output01.txt')
-
-
-
-    # tc03a pass
-    # elif all(x.strip(', ').isdigit() is False for x in data):
-    #     raise Exception('Invalid input: The item in the list must be a number')
