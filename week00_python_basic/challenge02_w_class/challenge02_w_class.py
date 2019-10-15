@@ -1,57 +1,96 @@
+import os
 import datetime
+from datetime import date
 today = datetime.date.today()
 
 class Person:
-    def __init__(self, id, first_name, middle_name, last_name, dob, premium, claim_count):
-        self.id = id
-        self.first_name = first_name
-        self.middle_name = middle_name
-        self.last_name = last_name
+    def __init__(self, nricfin, first_name, middle_name, last_name, dob, premium, claim_count):
+        if nricfin.isdigit():
+            raise Exception('n must be a string')
+        else:
+            self.nricfin = nricfin
+
+        name = first_name + ' ' + middle_name + ' ' + last_name
+        # tc06b
+        if any(char.isdigit() for char in name):
+            raise Exception('s must not include number')
+        else:
+            self.first_name = first_name
+            self.middle_name = middle_name
+            self.last_name = last_name
+
+        # tc07a
+        for ele in dob.split('-'):
+            if not ele.isdigit():
+                raise Exception('d must be a date i.e. yyyy-mm-dd')
         self.dob = dob
-        self.premium = premium
-        self.claim_count = claim_count
 
-employee = []
+        # tc08a
+        if float(premium) > 0:
+            self.premium = premium
+        else:
+            raise Exception('p must be a positive float number')
 
-def insurance_policies(input, output):
+        # tc09a
+        if claim_count.isdigit() and int(claim_count) >= 0:
+            self.claim_count = claim_count
+        else:
+            raise Exception('c must be a not-negative integer')
+
+    def calculate_claims(self, claims_list):
+        d = [ele for ele in self.dob.split('-')]
+        year = d[2]
+        today = date.today()
+        self.age = today.year - int(year)
+
+        if self.claim_count == max(claims_list):
+            return self.premium * 3
+        elif self.age > 26:
+            return self.premium
+        else:
+            return self.premium * 2
+
+def read_input(input):
     # Open input file
-    with open(input, "r") as f1:
-
-        topic = f1.readline().rstrip('\n')
-        n = f1.readline().rstrip('\n')
-        data = f1.readlines()
+    with open(input, "r") as f:
+        topic = f.readline().rstrip('\n')
+        n = f.readline().rstrip('\n')
+        data = f.readlines()
 
     # Assign value for each employee
     idx = 0
+    driver = []
     while idx < len(data):
         # Split line into list
-        nricfin = data[idx].split()
-        employee_all = Person(*nricfin)
-        employee.append(employee_all)
-        employee[idx].year = int(employee[idx].dob[0:4])
+        info = data[idx].split()
+        driver_info = Person(*info)
+        driver.append(driver_info)
         idx += 1
+    claims_list = [dri.claim_count for dri in driver]
+    for dri in driver:
+        dri.calculate_claims(claims_list)
+    return topic, n, driver
 
-    claim_count_list = [c.claim_count for c in employee]
+def write_input(output, topic, n, driver):
+    with open(output, "w") as f:
+        # tc00
+        if int(n) == 0:
+            f.write(f'\n')
+        else:
+            f.write(f'{topic}\n')
+            for k in range(int(n)):
+                f.write(f'{driver[k].nricfin}, {driver[k].first_name.title()} {driver[k].middle_name[0].title()}. {driver[k].last_name.upper()}, {driver[k].age}, {driver[k].premium}\n')
 
-    # Compute Age and Premium of each employee
-    for j in range(len(data)):
-        employee[j].age = today.year - employee[j].year
-        if employee[j].claim_count == max(claim_count_list):
-            employee[j].premium = int(employee[j].premium) * 3
-        elif employee[j].age <= 26:
-            employee[j].premium = int(employee[j].premium) * 2
+def insurance_policies(input, output):
+    # Read file
+    file_exists = os.path.isfile(input)
+    if file_exists:
+        topic, n, driver = read_input(input)
+    else:
+        raise Exception('File %s not found' % input)
 
-    # Write into output file
-    f2 = open(output, "w")
-    f2.write(f'{topic}\n')
-    k = 0
-    while k < len(data):
-        f2.write(
-            f'{employee[k].id}, {employee[k].first_name.title()} {employee[k].middle_name[0].title()}. {employee[k].last_name.upper()}, {employee[k].age}, {employee[k].premium}\n')
-        k += 1
-    f2.close()
+    # Write to file
+    write_input(output, topic, n, driver)
 
-insurance_policies(input="input02.txt", output="output02.txt")
-
-
-
+if __name__ == '__main__':
+    insurance_policies(input="input02.txt", output="output02.txt")
