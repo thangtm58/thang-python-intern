@@ -39,16 +39,16 @@ class Person:
 
     def calculate_claims(self, claims_list):
         d = [ele for ele in self.dob.split('-')]
-        year = d[2]
+        year = d[0]
         today = date.today()
         self.age = today.year - int(year)
 
         if self.claim_count == max(claims_list):
-            return self.premium * 3
+            self.premium = int(self.premium) * 3
         elif self.age > 26:
-            return self.premium
+            self.premium = self.premium
         else:
-            return self.premium * 2
+            self.premium = int(self.premium) * 2
 
 def read_input(input):
     # Open input file
